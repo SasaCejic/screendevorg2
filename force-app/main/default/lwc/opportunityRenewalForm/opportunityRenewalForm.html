@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="New Renewal Opportunity" icon-name="standard:opportunity">
+        <div class="slds-p-around_medium">
+            <template if:true={loaded}>
+                <lightning-record-edit-form
+                    object-api-name="Opportunity"
+                    onsuccess={handleSuccess}
+                >
+                    <lightning-input-field field-name="RecordTypeId" value="012bm000003Je01AAC"></lightning-input-field>
+                    <lightning-input-field field-name="Name"></lightning-input-field>
+                    <lightning-input-field field-name="StageName"></lightning-input-field>
+                    <lightning-input-field field-name="CloseDate"></lightning-input-field>
+                    <lightning-input-field field-name="Created_From__c" value={opportunityId}></lightning-input-field>
+                    <!-- Dynamically set the Amount field -->
+                    <lightning-input-field field-name="Amount" value={amount}></lightning-input-field>
+                    <lightning-input-field field-name="Renewal_Date__c" value={renewalDate}></lightning-input-field>
+                    <div class="slds-m-top_medium">
+                        <lightning-button type="submit" label="Save" class="slds-m-right_small"></lightning-button>
+                        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+                    </div>
+                </lightning-record-edit-form>
+            </template>
+            <template if:false={loaded}>
+                <lightning-spinner alternative-text="Loading data..."></lightning-spinner>
+            </template>
+        </div>
+    </lightning-card>
+</template>
